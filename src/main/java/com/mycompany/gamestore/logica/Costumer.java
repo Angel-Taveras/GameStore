@@ -9,64 +9,68 @@ import javax.persistence.Id;
 public class Costumer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int id_costumer;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Uso de auto-incremento en lugar de secuencia
+    private int idCostumer;  // Nombre de campo corregido (seguimos las convenciones de nombres en Java)
+    
     private String firstName;
     private String lastName;
     private String emailAddress;
-
     private String phoneNumber;
 
-    public Costumer() {
-    }
-
-    public Costumer(String firstName, String lastName, String emailAddress, int id_costumer, String phoneNumber) {
+    // Constructor sin el parámetro idCostumer (generado automáticamente por JPA)
+    public Costumer(String firstName, String lastName, String emailAddress, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
-        this.id_costumer = id_costumer;
         this.phoneNumber = phoneNumber;
+    }
 
+    Costumer() {
+       
+    }
+
+    // Getters y Setters
+    public int getIdCostumer() {
+        return idCostumer;
+    }
+
+    public void setIdCostumer(int idCostumer) {
+        this.idCostumer = idCostumer;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public int id_costumer(){
-        return id_costumer;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
 
-    public void set(int id_costumer){
-        this.id_costumer = id_costumer;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
+    public Integer getId_costumer() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

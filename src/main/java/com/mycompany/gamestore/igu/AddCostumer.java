@@ -1,10 +1,11 @@
-
 package com.mycompany.gamestore.igu;
 
+import com.mycompany.gamestore.logica.Controller;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 public class AddCostumer extends javax.swing.JFrame {
 
- 
     public AddCostumer() {
         initComponents();
     }
@@ -32,8 +33,6 @@ public class AddCostumer extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txtLastName = new javax.swing.JTextField();
-        txtCostumerId = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -103,10 +102,6 @@ public class AddCostumer extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Service Type:");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Costumer id:");
-
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Console Model:");
@@ -147,7 +142,6 @@ public class AddCostumer extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,9 +158,7 @@ public class AddCostumer extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCostumerId)
-                                    .addComponent(txtLastName)))
+                                .addComponent(txtLastName))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
@@ -201,11 +193,7 @@ public class AddCostumer extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(txtCostumerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(67, 67, 67)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -240,7 +228,6 @@ public class AddCostumer extends javax.swing.JFrame {
                         .addGap(20, 20, 20))))
         );
 
-        jLabel8.getAccessibleContext().setAccessibleName("Email Address:");
         jLabel8.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -264,18 +251,39 @@ public class AddCostumer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
+        Controller control = new Controller();
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+        String emailAddress = txtEmailAddress.getText();
+        String phoneNumber = txtPhoneNumber.getText();
+        String issueDescription = txtIssueDescription.getText();
+        String consoleModel = (String) cmbConsoleModel.getSelectedItem();
+        String serviceType = (String) cmbServiceType.getSelectedItem();
+        control.save(firstName, lastName, emailAddress, phoneNumber, issueDescription, consoleModel, serviceType);
+
+        JOptionPane optionPane = new JOptionPane("Costumer has been added successfully", JOptionPane.INFORMATION_MESSAGE);
+        JDialog dialog = optionPane.createDialog("Save Correctly");
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
+
+        txtEmailAddress.setText("");
+        txtFirstName.setText("");
+        txtLastName.setText("");
+        txtPhoneNumber.setText("");
+        txtIssueDescription.setText("");
+        cmbConsoleModel.setSelectedIndex(0);
+        cmbServiceType.setSelectedIndex(0);
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCleanActionPerformed
-       txtCostumerId.setText("");
-       txtEmailAddress.setText("");
-       txtFirstName.setText("");
-       txtLastName.setText("");
-       txtPhoneNumber.setText("");
-       txtIssueDescription.setText("");
-       cmbConsoleModel.setSelectedIndex(0);
-       cmbServiceType.setSelectedIndex(0);
+
+        txtEmailAddress.setText("");
+        txtFirstName.setText("");
+        txtLastName.setText("");
+        txtPhoneNumber.setText("");
+        txtIssueDescription.setText("");
+        cmbConsoleModel.setSelectedIndex(0);
+        cmbServiceType.setSelectedIndex(0);
     }//GEN-LAST:event_btnCleanActionPerformed
 
 
@@ -292,7 +300,6 @@ public class AddCostumer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -304,7 +311,6 @@ public class AddCostumer extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtCostumerId;
     private javax.swing.JTextField txtEmailAddress;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextArea txtIssueDescription;
